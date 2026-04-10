@@ -1,0 +1,86 @@
+<div class="search-page">
+  <section class="search-hero">
+    <div class="search-hero-content">
+      <h1>Explore Countries</h1>
+      <p>Search by name or filter by region to discover countries around the world.</p>
+
+      <div class="search-bar">
+        <span class="search-icon">🔎</span>
+        <input
+          type="text"
+          placeholder="Search countries..."
+          [(ngModel)]="query"
+          (input)="search()"
+        />
+        <button class="clear-btn" *ngIf="query || selectedRegion !== 'All'" (click)="clearAll()">
+          Clear
+        </button>
+      </div>
+
+      <div class="region-filters">
+        <button
+          class="region-btn"
+          [class.active]="selectedRegion === 'All'"
+          (click)="setRegion('All')"
+        >
+          All
+        </button>
+
+        <button
+          class="region-btn"
+          *ngFor="let region of regions"
+          [class.active]="selectedRegion === region"
+          (click)="setRegion(region)"
+        >
+          {{ region }}
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-meta">
+      <h2>Results</h2>
+      <p>{{ results.length }} countries found</p>
+    </div>
+
+    <div class="loading-state" *ngIf="loading">
+      Loading countries...
+    </div>
+
+    <div class="empty-state" *ngIf="!loading && results.length === 0">
+      No countries matched your search.
+    </div>
+
+    <div class="grid" *ngIf="!loading && results.length > 0">
+      <div
+        class="card"
+        *ngFor="let c of results; trackBy: trackByCode"
+        [routerLink]="['/details', c.cca3]"
+      >
+        <div class="flag-container">
+          <img [src]="c.flags?.png" [alt]="c.name.common + ' flag'" loading="lazy" />
+        </div>
+
+        <div class="card-content">
+          <h3>{{ c.name.common }}</h3>
+
+          <div class="info-row">
+            <span class="label">Capital</span>
+            <span class="value">{{ c.capital?.[0] || 'N/A' }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Region</span>
+            <span class="value">{{ c.region || 'N/A' }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="label">Currency</span>
+            <span class="value">{{ getCurrencyName(c.currencies) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

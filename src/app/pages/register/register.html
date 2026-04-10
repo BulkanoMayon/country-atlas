@@ -1,0 +1,32 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Create Account</h1>
+    <p class="subtitle">Create a local account for Country Atlas.</p>
+
+    <form class="auth-form" (ngSubmit)="onRegister()">
+      <label>
+        Username
+        <input type="text" [(ngModel)]="username" name="username" placeholder="username" />
+      </label>
+
+      <label>
+        Email
+        <input type="email" [(ngModel)]="email" name="email" placeholder="you@example.com" />
+      </label>
+
+      <label>
+        Password
+        <input type="password" [(ngModel)]="password" name="password" placeholder="••••••••" />
+      </label>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <p class="message error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="message success" *ngIf="successMessage">{{ successMessage }}</p>
+
+    <p class="hint">
+      Already have an account? <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

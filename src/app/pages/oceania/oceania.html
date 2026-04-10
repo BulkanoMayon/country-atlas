@@ -1,0 +1,17 @@
+<h2>Oceania</h2>
+
+<div *ngIf="loading">Loading countries...</div>
+
+<div class="grid" *ngIf="!loading">
+  <div
+    class="card"
+    *ngFor="let c of countries"
+    [routerLink]="['/details', c.cca3]"
+  >
+    <img [src]="c.flags?.png" />
+    <h3>{{ c.name.common }}</h3>
+    <p><b>Capital:</b> {{ c.capital?.[0] || 'N/A' }}</p>
+    <p><b>Population:</b> {{ c.population | number }}</p>
+    <p><b>Currency:</b> {{ getCurrencyName(c.currencies) }}</p>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<div class="details-page">
+  <div *ngIf="loading" class="loading-state">
+    <div class="spinner"></div>
+    <p>Loading country details...</p>
+  </div>
+
+  <div *ngIf="!loading && country" class="details-shell">
+    <button class="back-btn" (click)="goBack()">
+      ← Back
+    </button>
+
+    <section class="hero-card">
+      <div class="hero-flag">
+        <img [src]="country.flags?.png" [alt]="country.name.common + ' flag'" />
+      </div>
+
+      <div class="hero-content">
+        <div class="eyebrow">
+          {{ country.region }} • {{ country.subregion || 'No subregion' }}
+        </div>
+
+        <h1>{{ country.name.common }}</h1>
+        <p class="official-name">{{ country.name.official }}</p>
+
+        <div class="hero-actions">
+          <a
+            class="map-btn"
+            [href]="getMapsLink()"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View on Map
+          </a>
+
+          <button class="favorite-btn" (click)="toggleFavorite()">
+            {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="facts-grid">
+      <div class="fact-card">
+        <span class="label">Native Name</span>
+        <span class="value">{{ getNativeName() }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Capital</span>
+        <span class="value">{{ country.capital?.[0] || 'N/A' }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Population</span>
+        <span class="value">{{ country.population | number }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Top Level Domain</span>
+        <span class="value">{{ country.tld?.[0] || 'N/A' }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Currencies</span>
+        <span class="value">{{ getCurrencyName(country.currencies) }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Languages</span>
+        <span class="value">{{ getLanguages() }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Continents</span>
+        <span class="value">{{ getContinents() }}</span>
+      </div>
+
+      <div class="fact-card">
+        <span class="label">Time Zones</span>
+        <span class="value">{{ getTimezones() }}</span>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="content-card">
+        <h2>About {{ country.name.common }}</h2>
+        <p>
+          {{
+            countryDescription?.description ||
+            'This country has a rich identity, unique geography, and cultural significance worth exploring.'
+          }}
+        </p>
+      </div>
+
+      <div class="content-card" *ngIf="countryDescription?.attractions?.length">
+        <h2>Highlights</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let spot of countryDescription.attractions">
+            {{ spot }}
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div *ngIf="!loading && !country" class="empty-state">
+    Could not load country details.
+  </div>
+</div>

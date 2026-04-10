@@ -1,0 +1,30 @@
+<section class="countries-page">
+  <div class="page-header">
+    <h1>All Countries</h1>
+    <p>Browse every available country in a clean grid layout.</p>
+  </div>
+
+  <div class="loading-state" *ngIf="loading">
+    Loading countries...
+  </div>
+
+  <div class="grid" *ngIf="!loading">
+    <div
+      class="card"
+      *ngFor="let c of countries; trackBy: trackByCode; let i = index"
+      [routerLink]="['/details', c.cca3]"
+      [style.animationDelay]="i * 35 + 'ms'"
+    >
+      <div class="flag-wrap">
+        <img [src]="c.flags?.png" [alt]="c.name.common + ' flag'" />
+      </div>
+
+      <div class="card-body">
+        <h3>{{ c.name.common }}</h3>
+        <p><strong>Capital:</strong> {{ c.capital?.[0] || 'N/A' }}</p>
+        <p><strong>Population:</strong> {{ c.population | number }}</p>
+        <p><strong>Currency:</strong> {{ getCurrencyName(c.currencies) }}</p>
+      </div>
+    </div>
+  </div>
+</section>

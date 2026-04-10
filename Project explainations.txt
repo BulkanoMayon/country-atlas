@@ -1,0 +1,9 @@
+This is our project for WST subject, this is Country Atlas.
+
+The List of functions that doesnt work or works weirldly.
+
+The search bar on the bottom of the landing page, but when the "Start Searching" is clicked you can search there as that one works, and "view Countries" also works.
+The category is on the top for now thats the category of the countries it works but looks weird for now.
+The login and register are there but not functional.
+Theres no description I tried using another api for that due to theres alot of countries, but only select countries has description or weirdly works, but the api to get the country informations is still used.
+ANd it looks worse in light mode as I recently noticed.

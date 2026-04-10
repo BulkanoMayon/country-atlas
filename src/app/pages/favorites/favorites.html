@@ -1,0 +1,33 @@
+<section class="favorites-page">
+  <div class="page-header">
+    <h1>Your Favorites</h1>
+    <p>Saved countries you want to revisit.</p>
+  </div>
+
+  <div class="empty-state" *ngIf="favorites.length === 0">
+    No favorite countries yet.
+  </div>
+
+  <div class="grid" *ngIf="favorites.length > 0">
+    <div
+      class="card"
+      *ngFor="let c of favorites; trackBy: trackByCode"
+    >
+      <div class="flag-wrap" [routerLink]="['/details', c.cca3]">
+        <img [src]="c.flags?.png" [alt]="c.name.common + ' flag'" />
+      </div>
+
+      <div class="card-body">
+        <h3>{{ c.name.common }}</h3>
+        <p><strong>Capital:</strong> {{ c.capital?.[0] || 'N/A' }}</p>
+        <p><strong>Population:</strong> {{ c.population | number }}</p>
+        <p><strong>Currency:</strong> {{ getCurrencyName(c.currencies) }}</p>
+
+        <div class="card-actions">
+          <a class="details-btn" [routerLink]="['/details', c.cca3]">View Details</a>
+          <button class="remove-btn" (click)="removeFavorite(c.cca3)">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
