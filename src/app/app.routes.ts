@@ -8,6 +8,8 @@ import { Search } from './pages/search/search';
 import { CountryDetails } from './pages/country-details/country-details';
 import { Favorites } from './pages/favorites/favorites';
 import { About } from './pages/about/about';
+import { Faq } from './pages/faq/faq';
+import { Contact } from './pages/contact/contact';
 import { Terms } from './pages/terms/terms';
 
 export const routes: Routes = [
@@ -20,6 +22,8 @@ export const routes: Routes = [
   { path: 'favorites', component: Favorites },
 
   { path: 'about', component: About },
+  { path: 'faq', component: Faq },
+  { path: 'contact', component: Contact },
   { path: 'terms', component: Terms },
 
   { path: 'login', component: Login },

@@ -1,20 +1,78 @@
-<section class="simple-page">
-  <div class="simple-card">
-    <span class="eyebrow">Support</span>
-    <h1>Frequently Asked Questions</h1>
-    <p>
-      The full FAQ section is included inside the About page so users can read
-      project details, travel guide explanations, and common concerns in one place.
-    </p>
+<section class="faq-page">
+  <div class="faq-shell">
+    <div class="faq-hero">
+      <span class="eyebrow">Support</span>
+      <h1>Frequently Asked Questions</h1>
+      <p>
+        Learn more about how the Country Atlas platform works, including its features,
+        limitations, and how data is presented within the system.
+      </p>
+    </div>
 
-    <div class="button-group">
-      <a routerLink="/about" fragment="faq-section" class="go-btn primary">
-        Go to FAQ Section
-      </a>
+    <div class="faq-grid">
+      <div class="faq-card">
+        <h2>What kind of system is this project?</h2>
+        <p>
+          It is a front-end travel and lifestyle exploration application built using Angular.
+          It combines country data, destination highlights, map access, and user features.
+        </p>
+      </div>
 
-      <a routerLink="/about" class="go-btn ghost">
-        Back to About
-      </a>
+      <div class="faq-card">
+        <h2>Does the project use a backend?</h2>
+        <p>
+          No. This system is fully front-end only. All data is either retrieved from public APIs
+          or stored locally using browser storage technologies.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>How does login and registration work?</h2>
+        <p>
+          User accounts are simulated using localStorage. This means data is stored only in the
+          browser and is not connected to any external server or database.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>What happens if I clear my browser data?</h2>
+        <p>
+          All stored information including user accounts and favorites will be removed since the
+          system relies on browser storage.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>What kind of travel information is available?</h2>
+        <p>
+          Each country includes attractions, cities, food, cultural elements, events, and suggested
+          activities, making it a lifestyle-oriented travel guide.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>Can I view locations on a map?</h2>
+        <p>
+          Yes. Each country details page includes a direct link to map services so you can explore
+          the destination visually.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>Can I save my favorite countries?</h2>
+        <p>
+          Yes. You can add and remove countries from your favorites list. This data is stored locally
+          and tied to your browser session.
+        </p>
+      </div>
+
+      <div class="faq-card">
+        <h2>Is this project complete?</h2>
+        <p>
+          The system demonstrates core features such as routing, API integration, UI design, and
+          simulated user interaction. Additional improvements can still be added in future versions.
+        </p>
+      </div>
     </div>
   </div>
 </section>

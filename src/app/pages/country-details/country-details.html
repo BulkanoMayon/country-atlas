@@ -5,9 +5,7 @@
   </div>
 
   <div *ngIf="!loading && country" class="details-shell">
-    <button class="back-btn" (click)="goBack()">
-      ← Back
-    </button>
+    <button class="back-btn" (click)="goBack()">← Back</button>
 
     <section class="hero-card">
       <div class="hero-flag">
@@ -23,19 +21,49 @@
         <p class="official-name">{{ country.name.official }}</p>
 
         <div class="hero-actions">
-          <a
-            class="map-btn"
-            [href]="getMapsLink()"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on Map
-          </a>
+          <button class="map-btn" (click)="openMapModal()">View Map</button>
 
           <button class="favorite-btn" (click)="toggleFavorite()">
             {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
           </button>
         </div>
+
+        <!-- ✅ NEW CLEAN WEATHER UI -->
+        <div class="weather-card" *ngIf="weather || weatherLoading">
+          <h3>Current Weather</h3>
+
+          <div *ngIf="weatherLoading" class="weather-loading">
+            Loading weather...
+          </div>
+
+          <div *ngIf="weather" class="weather-content">
+            <div class="weather-main">
+              <div class="weather-temp">
+                {{ weather.temperature_2m }}°C
+              </div>
+              <div class="weather-desc">
+                {{ getWeatherLabel(weather.weather_code) }}
+              </div>
+            </div>
+
+            <div class="weather-extra">
+              <div class="weather-stat">
+                <span class="weather-label">Humidity</span>
+                <span class="weather-value">
+                  {{ weather.relative_humidity_2m }}%
+                </span>
+              </div>
+
+              <div class="weather-stat">
+                <span class="weather-label">Wind</span>
+                <span class="weather-value">
+                  {{ weather.wind_speed_10m }} km/h
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END WEATHER -->
       </div>
     </section>
 
@@ -56,11 +84,6 @@
       </div>
 
       <div class="fact-card">
-        <span class="label">Top Level Domain</span>
-        <span class="value">{{ country.tld?.[0] || 'N/A' }}</span>
-      </div>
-
-      <div class="fact-card">
         <span class="label">Currencies</span>
         <span class="value">{{ getCurrencyName(country.currencies) }}</span>
       </div>
@@ -68,11 +91,6 @@
       <div class="fact-card">
         <span class="label">Languages</span>
         <span class="value">{{ getLanguages() }}</span>
-      </div>
-
-      <div class="fact-card">
-        <span class="label">Continents</span>
-        <span class="value">{{ getContinents() }}</span>
       </div>
 
       <div class="fact-card">
@@ -113,26 +131,6 @@
       </div>
 
       <div class="content-card">
-        <h2>Food & Local Specialties</h2>
-        <div class="chips">
-          <span class="chip" *ngFor="let item of getLifestyleList('food')">
-            {{ item }}
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-grid">
-      <div class="content-card">
-        <h2>Culture & Lifestyle</h2>
-        <div class="chips">
-          <span class="chip" *ngFor="let item of getLifestyleList('culture')">
-            {{ item }}
-          </span>
-        </div>
-      </div>
-
-      <div class="content-card">
         <h2>Events & Festivals</h2>
         <div class="chips">
           <span class="chip" *ngFor="let item of getLifestyleList('events')">
@@ -144,26 +142,113 @@
 
     <section class="content-grid">
       <div class="content-card">
-        <h2>Things To Do</h2>
-        <div class="chips">
-          <span class="chip" *ngFor="let item of getLifestyleList('activities')">
-            {{ item }}
-          </span>
+        <h2>Restaurants and Cafes</h2>
+
+        <div class="place-list" *ngIf="restaurants.length > 0; else noRestaurants">
+          <div class="place-item" *ngFor="let place of restaurants">
+            <div class="place-text">
+              <strong>{{ place.name }}</strong>
+              <span>{{ place.type }}</span>
+            </div>
+
+            <div class="place-actions">
+              <button class="small-btn" (click)="openMapModal(); focusPlace(place)">
+                Focus
+              </button>
+
+              <button
+                class="small-btn secondary"
+                (click)="savePlace(place)"
+                [disabled]="isPlaceSaved(place.id)"
+              >
+                {{ isPlaceSaved(place.id) ? 'Saved' : 'Save Marker' }}
+              </button>
+            </div>
+          </div>
         </div>
+
+        <ng-template #noRestaurants>
+          <p>No nearby restaurant data available right now.</p>
+        </ng-template>
       </div>
 
       <div class="content-card">
-        <h2>Essential Services</h2>
-        <div class="chips">
-          <span class="chip" *ngFor="let item of getLifestyleList('services')">
-            {{ item }}
-          </span>
+        <h2>Essential City Services</h2>
+
+        <div class="place-list" *ngIf="cityServices.length > 0; else noServices">
+          <div class="place-item" *ngFor="let place of cityServices">
+            <div class="place-text">
+              <strong>{{ place.name }}</strong>
+              <span>{{ place.type }}</span>
+            </div>
+
+            <div class="place-actions">
+              <button class="small-btn" (click)="openMapModal(); focusPlace(place)">
+                Focus
+              </button>
+
+              <button
+                class="small-btn secondary"
+                (click)="savePlace(place)"
+                [disabled]="isPlaceSaved(place.id)"
+              >
+                {{ isPlaceSaved(place.id) ? 'Saved' : 'Save Marker' }}
+              </button>
+            </div>
+          </div>
         </div>
+
+        <ng-template #noServices>
+          <p>No nearby services data available right now.</p>
+        </ng-template>
       </div>
     </section>
   </div>
 
   <div *ngIf="!loading && !country" class="empty-state">
     Could not load country details.
+  </div>
+
+  <div class="map-modal" *ngIf="showMapModal">
+    <div class="map-modal-backdrop" (click)="closeMapModal()"></div>
+
+    <div class="map-modal-content">
+      <div class="map-modal-header">
+        <h2>{{ country?.name?.common }} Map</h2>
+        <button class="close-btn" (click)="closeMapModal()">✕</button>
+      </div>
+
+      <div class="map-stage">
+        <div id="city-map"></div>
+
+        <div class="map-loading-overlay" *ngIf="mapLoadingRestaurants || mapLoadingServices">
+          Loading nearby places...
+        </div>
+      </div>
+
+      <div class="map-bottom-panel">
+        <div class="panel-section">
+          <h3>Saved Markers</h3>
+
+          <div class="saved-list" *ngIf="getCurrentCountrySavedPlaces().length > 0; else noSaved">
+            <div class="saved-item" *ngFor="let place of getCurrentCountrySavedPlaces()">
+              <div class="place-text">
+                <strong>{{ place.name }}</strong>
+                <span>{{ place.type }}</span>
+              </div>
+
+              <div class="place-actions">
+                <button class="small-btn" (click)="focusPlace(place)">Focus</button>
+                <button class="small-btn danger" (click)="removeSavedPlace(place.id)">Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <ng-template #noSaved>
+            <p class="empty-note">No saved markers for this country yet.</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -5,14 +5,18 @@
         <span class="eyebrow">CityExplore / Country Atlas</span>
         <h1>About the Project</h1>
         <p>
-          This Angular-based travel and lifestyle guide was developed to help users explore destinations through country information, regional browsing, destination highlights, map access, and saved favorites. The project demonstrates routing, API integration, browser-based authentication, and responsive design in a front-end-only environment.
+          This Angular-based travel and lifestyle guide was developed to help users
+          explore destinations through country information, regional browsing,
+          destination highlights, map access, and saved favorites. The project
+          demonstrates routing, API integration, browser-based authentication,
+          and responsive design in a front-end-only environment.
         </p>
 
         <div class="hero-actions">
-          <a [routerLink]="['/about']" fragment="faq-section" class="hero-btn primary">
+          <a [routerLink]="['/faq']" class="hero-btn primary">
             Go to FAQ
           </a>
-          <a [routerLink]="['/about']" fragment="contact-section" class="hero-btn ghost">
+          <a [routerLink]="['/contact']" class="hero-btn ghost">
             Contact Us
           </a>
         </div>
@@ -24,22 +28,34 @@
       <div class="feature-grid">
         <div class="feature-item">
           <h3>Destination Exploration</h3>
-          <p>Users can browse destinations through country cards, discover basic facts, and view detailed pages for each location.</p>
+          <p>
+            Users can browse destinations through country cards, discover basic
+            facts, and view detailed pages for each location.
+          </p>
         </div>
 
         <div class="feature-item">
           <h3>Travel & Lifestyle Information</h3>
-          <p>The details pages present attractions, popular cities, food, culture, events, and suggested activities for a more lifestyle-oriented experience.</p>
+          <p>
+            The details pages present attractions, popular cities, food, culture,
+            events, and suggested activities for a more lifestyle-oriented experience.
+          </p>
         </div>
 
         <div class="feature-item">
           <h3>Interactive Navigation</h3>
-          <p>The app uses Angular routing, search filters, regional browsing, and direct map links to help users move through travel content smoothly.</p>
+          <p>
+            The app uses Angular routing, search filters, regional browsing, and
+            direct map links to help users move through travel content smoothly.
+          </p>
         </div>
 
         <div class="feature-item">
           <h3>Simulated User Features</h3>
-          <p>Login, registration, and favorites are handled through browser storage to simulate account and personalization features without a backend.</p>
+          <p>
+            Login, registration, and favorites are handled through browser storage
+            to simulate account and personalization features without a backend.
+          </p>
         </div>
       </div>
     </section>
@@ -47,71 +63,39 @@
     <section class="content-card">
       <h2>Project Scope</h2>
       <p class="contact-intro">
-        The application is built as a front-end-only travel and lifestyle guide using Angular, HTML, and CSS. It focuses on destination discovery, interactive browsing, user-friendly design, and API-powered data presentation while remaining within browser-based limitations.
+        The application is built as a front-end-only travel and lifestyle guide
+        using Angular, HTML, and CSS. It focuses on destination discovery,
+        interactive browsing, user-friendly design, and API-powered data
+        presentation while remaining within browser-based limitations.
       </p>
     </section>
 
-    <section class="content-card" id="faq-section">
-      <div class="section-head">
-        <h2>Frequently Asked Questions</h2>
-        <a [routerLink]="['/about']" fragment="contact-section" class="section-link">
-          Need more help?
-        </a>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item">
-          <h3>What kind of system is this project?</h3>
-          <p>It is a front-end travel and lifestyle exploration app built with Angular. It combines destination information, map access, search tools, and user features in one interface.</p>
+    <section class="content-card">
+      <h2>Quick Navigation</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h3>Frequently Asked Questions</h3>
+          <p>
+            Read common questions about the system, features, data sources, and
+            how the project works.
+          </p>
+          <a [routerLink]="['/faq']" class="section-link">Open FAQ</a>
         </div>
 
-        <div class="faq-item">
-          <h3>How is lifestyle content shown?</h3>
-          <p>The country details pages include destination highlights such as attractions, cities, food, cultural elements, events, and things to do.</p>
+        <div class="feature-item">
+          <h3>Contact Page</h3>
+          <p>
+            Send feedback, concerns, and suggestions using the project contact form.
+          </p>
+          <a [routerLink]="['/contact']" class="section-link">Open Contact</a>
         </div>
 
-        <div class="faq-item">
-          <h3>Does the project use a backend?</h3>
-          <p>No. This version is fully front-end only. User account data and favorites are stored in the browser through localStorage.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Can users explore destinations by region?</h3>
-          <p>Yes. Users can search and filter by major world regions such as Asia, Europe, Africa, Americas, and Oceania.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Does the project include map support?</h3>
-          <p>Yes. Each destination page includes a direct map link so users can locate and view the selected destination externally.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="content-card" id="contact-section">
-      <h2>Contact</h2>
-      <p class="contact-intro">
-        For project concerns, feedback, and feature suggestions, use the details below.
-      </p>
-
-      <div class="contact-grid">
-        <div class="contact-box">
-          <span class="contact-label">Project Name</span>
-          <span class="contact-value">CityExplore / Country Atlas</span>
-        </div>
-
-        <div class="contact-box">
-          <span class="contact-label">Email</span>
-          <span class="contact-value">joneljanes@gmail.com</span>
-        </div>
-
-        <div class="contact-box">
-          <span class="contact-label">Support Hours</span>
-          <span class="contact-value">Monday to Friday, 9:00 AM - 5:00 PM</span>
-        </div>
-
-        <div class="contact-box">
-          <span class="contact-label">Support Type</span>
-          <span class="contact-value">Travel guide questions, feature suggestions, and project concerns</span>
+        <div class="feature-item">
+          <h3>Terms and Conditions</h3>
+          <p>
+            View the project usage notes, storage limitations, and front-end-only policies.
+          </p>
+          <a [routerLink]="['/terms']" class="section-link">Open Terms</a>
         </div>
       </div>
     </section>
