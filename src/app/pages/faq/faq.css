@@ -3,18 +3,30 @@
   display: grid;
   place-items: center;
   padding: 2rem 1rem;
-  background: linear-gradient(180deg, #e9eef5 0%, #dfe7f1 100%);
+  background:
+    radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 28%),
+    linear-gradient(180deg, #e9eef5 0%, #dfe7f1 100%);
 }
 
 .simple-card {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   background: rgba(248, 250, 252, 0.95);
   border: 2px solid #cbd5e1;
-  border-radius: 20px;
+  border-radius: 22px;
   padding: 2rem;
   text-align: center;
   box-shadow: 0 14px 32px rgba(15, 23, 42, 0.06);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .simple-card h1 {
@@ -24,15 +36,42 @@
 
 .simple-card p {
   color: #475569;
-  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .go-btn {
   display: inline-block;
   text-decoration: none;
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.go-btn.primary {
   background: #2563eb;
   color: #ffffff;
-  font-weight: 700;
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
+}
+
+.go-btn.primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.go-btn.ghost {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.go-btn.ghost:hover {
+  background: #bfdbfe;
+  transform: translateY(-2px);
 }

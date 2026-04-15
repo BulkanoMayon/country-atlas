@@ -32,9 +32,10 @@
 .logo {
   text-decoration: none;
   color: #f8fafc;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -52,30 +53,32 @@
 .user-badge {
   text-decoration: none;
   color: #cbd5e1;
-  font-weight: 600;
+  font-weight: 700;
   padding: 0.65rem 0.95rem;
   border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
   background: rgba(59, 130, 246, 0.16);
   color: #ffffff;
+  transform: translateY(-1px);
 }
 
-.auth-item {
-  margin-left: 0.35rem;
+.auth-space {
+  margin-left: 0.5rem;
 }
 
 .user-badge-wrap {
-  margin-left: 0.6rem;
-  margin-right: 0.25rem;
+  margin-left: 0.65rem;
+  margin-right: 0.15rem;
 }
 
 .user-badge {
+  display: inline-block;
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
-  display: inline-block;
 }
 
 .logout-btn {
@@ -86,14 +89,15 @@
 }
 
 .logout-btn:hover {
-  background: rgba(239, 68, 68, 0.25);
+  background: rgba(239, 68, 68, 0.26);
+  transform: translateY(-1px);
 }
 
 .content {
   min-height: calc(100vh - 72px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-shell {
     flex-direction: column;
     align-items: flex-start;
@@ -103,7 +107,7 @@
     width: 100%;
   }
 
-  .auth-item,
+  .auth-space,
   .user-badge-wrap {
     margin-left: 0;
     margin-right: 0;

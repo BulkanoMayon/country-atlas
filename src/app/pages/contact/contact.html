@@ -1,1 +1,84 @@
-<p>contact works!</p>
+<section class="contact-page">
+  <div class="contact-shell">
+    <div class="contact-card">
+      <span class="eyebrow">Get in Touch</span>
+      <h1>Contact Us</h1>
+      <p class="intro">
+        Send your questions, suggestions, or feedback about the travel and lifestyle guide project.
+      </p>
+
+      <form class="contact-form" (ngSubmit)="submitForm()">
+        <div class="form-grid">
+          <label>
+            Full Name
+            <input
+              type="text"
+              [(ngModel)]="name"
+              name="name"
+              placeholder="Enter your full name"
+            />
+          </label>
+
+          <label>
+            Email Address
+            <input
+              type="email"
+              [(ngModel)]="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+          </label>
+        </div>
+
+        <label>
+          Subject
+          <input
+            type="text"
+            [(ngModel)]="subject"
+            name="subject"
+            placeholder="Enter the subject"
+          />
+        </label>
+
+        <label>
+          Message
+          <textarea
+            rows="6"
+            [(ngModel)]="message"
+            name="message"
+            placeholder="Write your message here"
+          ></textarea>
+        </label>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+
+      <p class="message error" *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p class="message success" *ngIf="successMessage">{{ successMessage }}</p>
+    </div>
+
+    <div class="contact-info-card">
+      <h2>Support Information</h2>
+
+      <div class="info-item">
+        <span class="label">Project</span>
+        <span class="value">CityExplore / Country Atlas</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Email</span>
+        <span class="value">joneljanes@gmail.com</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Support Hours</span>
+        <span class="value">Monday to Friday, 9:00 AM - 5:00 PM</span>
+      </div>
+
+      <div class="info-item">
+        <span class="label">Purpose</span>
+        <span class="value">Project concerns, feedback, and feature suggestions</span>
+      </div>
+    </div>
+  </div>
+</section>

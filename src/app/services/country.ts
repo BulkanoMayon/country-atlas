@@ -64,7 +64,13 @@ export class country {
           return {
             description:
               extract.substring(0, 400) + (extract.length > 400 ? '...' : ''),
-            attractions: this.extractAttractions(extract)
+            attractions: this.extractAttractions(extract),
+            cities: this.getLifestyleFallback(code).cities,
+            food: this.getLifestyleFallback(code).food,
+            culture: this.getLifestyleFallback(code).culture,
+            events: this.getLifestyleFallback(code).events,
+            activities: this.getLifestyleFallback(code).activities,
+            services: this.getLifestyleFallback(code).services
           };
         }
 
@@ -215,7 +221,89 @@ export class country {
       }
     };
 
-    return richData[code] || richData['default'];
+    const lifestyle = this.getLifestyleFallback(code);
+    const selected = richData[code] || richData['default'];
+
+    return {
+      ...selected,
+      cities: lifestyle.cities,
+      food: lifestyle.food,
+      culture: lifestyle.culture,
+      events: lifestyle.events,
+      activities: lifestyle.activities,
+      services: lifestyle.services
+    };
+  }
+
+  private getLifestyleFallback(code: string): any {
+    const lifestyleData: { [key: string]: any } = {
+      'PHL': {
+        cities: ['Manila', 'Cebu', 'Davao'],
+        food: ['Adobo', 'Sinigang', 'Lechon'],
+        culture: ['Fiestas', 'Warm Hospitality', 'Island Traditions'],
+        events: ['Sinulog Festival', 'Ati-Atihan Festival', 'Kadayawan Festival'],
+        activities: ['Island Hopping', 'Beach Trips', 'Heritage Walks'],
+        services: ['Hotels', 'Transport Terminals', 'Tourist Help Desks']
+      },
+      'JPN': {
+        cities: ['Tokyo', 'Kyoto', 'Osaka'],
+        food: ['Sushi', 'Ramen', 'Tempura'],
+        culture: ['Tea Ceremonies', 'Anime Culture', 'Temple Traditions'],
+        events: ['Cherry Blossom Season', 'Gion Festival', 'Snow Festivals'],
+        activities: ['Temple Visits', 'City Tours', 'Food Trips'],
+        services: ['Rail Pass Access', 'Tourist Information Centers', 'Urban Transit']
+      },
+      'KOR': {
+        cities: ['Seoul', 'Busan', 'Incheon'],
+        food: ['Kimchi', 'Bibimbap', 'Korean BBQ'],
+        culture: ['K-pop', 'Palace Culture', 'Night Markets'],
+        events: ['Boryeong Mud Festival', 'Lantern Festivals', 'K-pop Events'],
+        activities: ['Shopping District Tours', 'Palace Visits', 'Street Food Trips'],
+        services: ['Metro Systems', 'Tourist Centers', 'Public Transport']
+      },
+      'FRA': {
+        cities: ['Paris', 'Lyon', 'Marseille'],
+        food: ['Croissants', 'Cheese', 'Macarons'],
+        culture: ['Museums', 'Fashion', 'Café Lifestyle'],
+        events: ['Bastille Day', 'Cannes Events', 'Christmas Markets'],
+        activities: ['Museum Visits', 'River Cruises', 'Walking Tours'],
+        services: ['Hotels', 'Metro Access', 'Tourist Welcome Centers']
+      },
+      'ITA': {
+        cities: ['Rome', 'Milan', 'Venice'],
+        food: ['Pizza', 'Pasta', 'Gelato'],
+        culture: ['Art Heritage', 'Historic Architecture', 'Café Culture'],
+        events: ['Venice Carnival', 'Summer Festivals', 'Religious Celebrations'],
+        activities: ['Historic Site Tours', 'Canal Trips', 'Food Tours'],
+        services: ['Train Stations', 'Hotels', 'Visitor Centers']
+      },
+      'USA': {
+        cities: ['New York', 'Los Angeles', 'Chicago'],
+        food: ['Burgers', 'BBQ', 'Apple Pie'],
+        culture: ['Music Scenes', 'Sports Culture', 'City Entertainment'],
+        events: ['Thanksgiving Parades', 'Music Festivals', 'State Fairs'],
+        activities: ['City Tours', 'Road Trips', 'National Park Visits'],
+        services: ['Airports', 'Hotels', 'Tourist Help Centers']
+      },
+      'AUS': {
+        cities: ['Sydney', 'Melbourne', 'Brisbane'],
+        food: ['Meat Pie', 'Lamington', 'Seafood'],
+        culture: ['Coastal Lifestyle', 'Sports Culture', 'Outdoor Living'],
+        events: ['Sydney Festivals', 'Food Events', 'Seasonal Celebrations'],
+        activities: ['Beach Days', 'Nature Trips', 'City Exploration'],
+        services: ['Transit Systems', 'Hotels', 'Travel Centers']
+      },
+      'default': {
+        cities: ['Capital City', 'Tourist District', 'Cultural Center'],
+        food: ['Traditional Dishes', 'Street Food', 'Local Desserts'],
+        culture: ['Local Traditions', 'Arts and Culture', 'Community Festivals'],
+        events: ['Seasonal Festival', 'Cultural Celebration', 'Tourism Event'],
+        activities: ['Sightseeing', 'Food Trips', 'Cultural Tours'],
+        services: ['Hotels', 'Transport Access', 'Tourist Information']
+      }
+    };
+
+    return lifestyleData[code] || lifestyleData['default'];
   }
 
   private extractAttractions(text: string): string[] {

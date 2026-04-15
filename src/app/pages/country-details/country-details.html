@@ -87,16 +87,76 @@
         <p>
           {{
             countryDescription?.description ||
-            'This country has a rich identity, unique geography, and cultural significance worth exploring.'
+            'This destination has a rich identity, unique geography, and cultural significance worth exploring.'
           }}
         </p>
       </div>
 
       <div class="content-card" *ngIf="countryDescription?.attractions?.length">
-        <h2>Highlights</h2>
+        <h2>Top Attractions</h2>
         <div class="chips">
           <span class="chip" *ngFor="let spot of countryDescription.attractions">
             {{ spot }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="content-card">
+        <h2>Popular Cities</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let city of getLifestyleList('cities')">
+            {{ city }}
+          </span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h2>Food & Local Specialties</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let item of getLifestyleList('food')">
+            {{ item }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="content-card">
+        <h2>Culture & Lifestyle</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let item of getLifestyleList('culture')">
+            {{ item }}
+          </span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h2>Events & Festivals</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let item of getLifestyleList('events')">
+            {{ item }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="content-card">
+        <h2>Things To Do</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let item of getLifestyleList('activities')">
+            {{ item }}
+          </span>
+        </div>
+      </div>
+
+      <div class="content-card">
+        <h2>Essential Services</h2>
+        <div class="chips">
+          <span class="chip" *ngFor="let item of getLifestyleList('services')">
+            {{ item }}
           </span>
         </div>
       </div>

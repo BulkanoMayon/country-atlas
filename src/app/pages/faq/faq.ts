@@ -7,6 +7,6 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './faq.html',
-  styleUrls: ['./faq.css'],
+  styleUrls: ['./faq.css']
 })
 export class Faq {}

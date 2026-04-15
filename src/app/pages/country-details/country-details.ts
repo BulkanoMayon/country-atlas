@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { country } from '../../services/country';
 import { FavoritesService } from '../../services/favorites';
@@ -7,7 +7,7 @@ import { FavoritesService } from '../../services/favorites';
 @Component({
   selector: 'app-country-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './country-details.html',
   styleUrls: ['./country-details.css']
 })
@@ -106,6 +106,10 @@ export class CountryDetails implements OnInit {
 
   getMapsLink(): string {
     return this.country?.maps?.googleMaps || this.country?.maps?.openStreetMaps || '#';
+  }
+
+  getLifestyleList(key: string): string[] {
+    return this.countryDescription?.[key] || [];
   }
 
   goBack(): void {
