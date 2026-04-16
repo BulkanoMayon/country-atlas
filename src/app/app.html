@@ -1,22 +1,28 @@
 <nav class="navbar">
   <div class="nav-shell">
-    <a routerLink="/home" class="logo">Country Atlas</a>
+    <a routerLink="/home" class="logo">
+      <span class="logo-mark">◎</span>
+      <span>Country Atlas</span>
+    </a>
 
     <ul class="nav-links">
-      <li><a routerLink="/countries" routerLinkActive="active">View All Countries</a></li>
+      <li><a routerLink="/countries" routerLinkActive="active">Countries</a></li>
       <li><a routerLink="/search" routerLinkActive="active">Search</a></li>
       <li><a routerLink="/about" routerLinkActive="active">About</a></li>
       <li><a routerLink="/terms" routerLinkActive="active">Terms</a></li>
 
       <ng-container *ngIf="!isLoggedIn; else loggedInNav">
         <li class="auth-space"><a routerLink="/login" routerLinkActive="active">Login</a></li>
-        <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+        <li><a routerLink="/register" class="nav-cta" routerLinkActive="active">Register</a></li>
       </ng-container>
 
       <ng-template #loggedInNav>
         <li class="auth-space"><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
         <li class="user-badge-wrap">
-          <span class="user-badge">Hi, {{ currentUsername }}</span>
+          <span class="user-badge">
+            <span class="user-dot"></span>
+            {{ currentUsername }}
+          </span>
         </li>
         <li>
           <button class="logout-btn" (click)="logout()">Logout</button>

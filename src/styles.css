@@ -1,4 +1,5 @@
 @import "leaflet/dist/leaflet.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -6,4 +7,43 @@ html {
 
 body {
   margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(91, 192, 255, 0.12), transparent 24%),
+    linear-gradient(180deg, #07111f 0%, #0b1523 100%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.leaflet-container {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.leaflet-control-zoom a,
+.leaflet-bar a {
+  background: #112033 !important;
+  color: #eef6ff !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #0f1c2c !important;
+  color: #eef6ff !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.leaflet-popup-tip {
+  background: #0f1c2c !important;
 }
